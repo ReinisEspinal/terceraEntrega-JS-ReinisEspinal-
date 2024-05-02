@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="css/styles.css" />
+    <link rel="shortcut icon" href="./assets/logoImgIco.ico" />
+    <title>HappyShopping</title>
+  </head>
+  <body>
+    <section class="wrapper">
+      <nav class="nav">
+        <article class="nav-container">
+          <article class="nav-container-imagotipo">
+            <img src="./assets/logoImg.png" alt="logo" />
+            <span class="typography">HappyShopping</span>
+          </article>
+          <!--END LOGO-->
+
+          <article class="nav-container-filter">
+            <select class="nav-container-filter-left" title="Buscar en">
+              <option selected="selected" value="patines">Patines</option>
+            </select>
+
+            <input
+              type="search"
+              class="nav-container-filter-search"
+              placeholder="Search..."
+            />
+            <!--SEARCH-->
+
+            <div class="shoppingCarAmount">
+              <img
+                class="searchBtnImg"
+                src="./assets/searchLupaImg.png"
+                alt="lupa"
+              />
+            </div>
+          </article>
+          <!--END FILTER-->
+
+          <img class="carImg" src="./assets/carImg.png" alt="car" />
+          <!--END CARD COUNT-->
+        </article>
+      </nav>
+      <!--END NAV-->
+
+      <section class="sortFilter">
+        <p class="textFilter">
+          <span class="key-1">40,000</span> resultados para
+          <span class="key-2">"lentes"</span>
+        </p>
+        <article class="nav-sortFilter-container">
+          <select class="nav-sortFilter-container-right" title="Buscar en">
+            <option selected="selected" hidden disabled>
+              Sort by: Feature
+            </option>
+            <option value="DeMayorMenor">
+              Precio: del mas alto al mas bajo
+            </option>
+          </select>
+        </article>
+      </section>
+      <!--END FILTER-->
+
+      <main class="main">
+        <section class="main-container-filter-left sectionProduct">
+          <div class="filter-left brand-filter-left">
+            <p class="title">Brands</p>
+            <select class="main-select-brand">
+              <option selected="selected" hidden disabled>
+                Filter by: Brands
+              </option>
+              <option value="nike">Nike</option>
+            </select>
+            <hr />
+          </div>
+          <!--END BRANDS FILTER-->
+
+          <div class="filter-left price-filter-left">
+            <p>Price</p>
+            <ul class="main-container-filter-ul ul">
+              <li class="filter-ul-li li">Menos de $25</li>
+              <li class="filter-ul-li li">De $50 a $100</li>
+              <li class="filter-ul-li li">De $25 a $50</li>
+            </ul>
+            <hr />
+          </div>
+          <!--END PRICE FILTER-->
+        </section>
+        <!--END FILTER LEFT-->
+
+        <section class="main-container-products sectionProduct">
+          <div class="product-container">
+            <h1>Products Shop</h1>
+            <div id="productContainer" class="section-product-car">
+              <!--JS PRODUCTS CARD-->
+            </div>
+          </div>
+        </section>
+        <!--END PRODUCTS-->
+
+        <section class="main-container-shoppingDetails sectionProduct">
+          SHOPPING DETAILS
+        </section>
+        <!--END shoppingDetails-->
+      </main>
+      <!--END MAIN-->
+    </section>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
