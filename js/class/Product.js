@@ -26,6 +26,28 @@ export default class Product {
     this._urlImg = urlImg;
   }
 
+  static getUniqueCategoryCollection() {
+    const lstProductsCategory = db.lstProducts.map(
+      (productObj) => productObj.category
+    );
+    const uniqueCategory = [...new Set(lstProductsCategory)];
+
+    return uniqueCategory;
+  }
+
+  static getUniqueCategoriesInclude() {
+    const categories = [];
+
+    db.lstProducts.forEach((productObj) => {
+      const existingCaterogy = categories.includes(productObj.category);
+      existingCaterogy
+        ? null
+        : categories.push(productObj.category);
+    });
+
+    return categories;
+  }
+
   static productView(lstProductsCarShopping) {
     const newlstProduct = db.lstProductsCarShopping.map((productObj) => ({
       name: productObj.name,
