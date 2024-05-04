@@ -1,10 +1,11 @@
 import imgComponent from "./imgComponents.js";
+import counterLabelComponent from "./counterLabelComponent.js";
 
 function cardComponent(containerNode, lstObj = [Object]) {
   const container = document.getElementById(containerNode); // Suponiendo que tienes un contenedor con el id 'productContainer' donde deseas mostrar los productos
 
   // Limpia el contenedor antes de agregar nuevos productos
-
+  container.innerHTML = "";
   // Recorre la lista de productos y crea elementos HTML para cada uno
   lstObj.forEach((product) => {
     const productCard = document.createElement("div");
@@ -24,8 +25,6 @@ function cardComponent(containerNode, lstObj = [Object]) {
 
     containerImg.appendChild(imgHeaderCard);
     headerCard.appendChild(containerImg);
-
-
 
     // Crea el cuerpo del producto
     const bodyCard = document.createElement("div");

@@ -1,5 +1,6 @@
 import Status from "./Status.js";
 import { DataBase } from "../db/DataBase.js";
+import counterElementList from "../functions/counterElementList.js";
 
 const status = new Status();
 const db = new DataBase();
@@ -40,9 +41,7 @@ export default class Product {
 
     db.lstProducts.forEach((productObj) => {
       const existingCaterogy = categories.includes(productObj.category);
-      existingCaterogy
-        ? null
-        : categories.push(productObj.category);
+      existingCaterogy ? null : categories.push(productObj.category);
     });
 
     return categories;
@@ -119,7 +118,13 @@ export default class Product {
   static getProductById(productId) {
     return db.lstProducts.find((e) => e.productId === productId);
   }
-
+  // const categoryValue = option.toLowerCase().replace("/\s/g", "")"
+  static getProductByName(name = "") {
+    let x = db.lstProducts.filter((p) =>
+      p.name.toLowerCase().match(name.toLowerCase())
+    );
+    return x;
+  }
   static editProductQuantity(id = "", quantityProduct = 0) {
     let product = this.getProductById(id);
 
@@ -128,7 +133,9 @@ export default class Product {
 
     return product.quantity;
   }
-
+  static productCounter(lstProduct = [Product]) {
+    return counterElementList(lstProduct);
+  }
   static getAllProducts() {
     return db.lstProducts;
   }
