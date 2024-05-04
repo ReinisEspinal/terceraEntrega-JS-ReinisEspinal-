@@ -6,7 +6,7 @@ function selectComponent(selectElementId, options) {
 
   // Add a default option
   const defaultOption = document.createElement("option");
-  defaultOption.value = "";
+  defaultOption.value = "all";
   defaultOption.text = "All";
 
   defaultOption.selected = true;
@@ -15,7 +15,7 @@ function selectComponent(selectElementId, options) {
   // Add options for each unique category
   options.forEach((option) => {
     // const categoryValue = option.toLowerCase().replace("/\s/g", "")"
-    const categoryValue = option.toLowerCase().split(" ").join("");
+    const categoryValue = option;//.toLowerCase().split(" ").join("");
     const optionTag = document.createElement("option");
     optionTag.value = categoryValue;
     optionTag.text = option;
