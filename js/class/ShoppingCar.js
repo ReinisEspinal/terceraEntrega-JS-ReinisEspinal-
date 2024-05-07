@@ -1,5 +1,6 @@
 import { DataBase } from "../db/DataBase.js";
 import Product from "./Product.js";
+import shoppingCarStatus from "./ShopingCarStatus.js";
 import ShoppingCarStatus from "./ShopingCarStatus.js";
 import Status from "./Status.js";
 
@@ -7,31 +8,26 @@ const db = new DataBase();
 const shoppingStatus = new ShoppingCarStatus();
 const status = new Status();
 
-let counter = 0;
+let counter = 1;
 export default class ShoppingCar {
   constructor(
     customerId = "",
     quantity = 0,
     productId = "",
-    datePurchase = "",
-    status = "ACTIVE"
+    subTotal,
+    status = ""
   ) {
-    this.shoppingCarId = customerId.concat(
-      "-",
-      counter++,
-      "-",
-      datePurchase,
-      "-",
-      productId
-    );
+    this.shoppingCarId = customerId.concat("-", counter++, "-", productId);
     this.customerId = customerId;
     this.quantity = quantity;
     this.productId = productId;
-    this.datePurchase = datePurchase;
+    this.datePurchase = this.CurrentDate;
+    this.status = shoppingStatus.Active;
+    this.subTotal = subTotal;
     this.status = status;
-    this.subtotal = this.Subtotal;
   }
-  get Subtotal() {
+
+  get SubTotal() {
     return ShoppingCar.productCarShoppingView(this.customerId).reduce(
       (acumulador, product) => {
         const price = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
@@ -66,6 +62,7 @@ export default class ShoppingCar {
               quantity: car.quantity,
               price: lstProduct.price,
               urlImg: lstProduct.urlImg,
+              subTotal: lstProduct.subTotal,
             };
           } else {
             return null; // Producto no encontrado en la lista de productos
@@ -83,15 +80,7 @@ export default class ShoppingCar {
       }
     });
   }
-  static addNewProductToCar(shoppingCarObj = ShoppingCar) {
-    const newProduct = new ShoppingCar(
-      shoppingCarObj.customerId,
-      shoppingCarObj.quantity,
-      shoppingCarObj.productId,
-      shoppingCarObj.datePurchase,
-      shoppingStatus.Active // Asignar el estado activo por defecto
-    );
-
+  static addNewProductToCar(shoppingCarObj) {
     const productQuantity = Product.editProductQuantity(
       shoppingCarObj.productId,
       shoppingCarObj.quantity
@@ -100,14 +89,53 @@ export default class ShoppingCar {
     if (productQuantity <= 0) {
       Product.updateProductStatus(shoppingCarObj.productId, status.OutOFStock);
     } else {
-      db.lstShoppingCar.push(newProduct);
+      db.lstShoppingCar.push(
+        new ShoppingCar(
+          shoppingCarObj.customerId,
+          shoppingCarObj.quantity,
+          shoppingCarObj.productId,
+          shoppingCarObj.subTotal,
+          shoppingCarObj.status
+        )
+      );
+      db.saveToLocalStorage();
     }
-    return newProduct; // Devolver el nuevo producto agregado
+    return this.getActiveShoppingCarByCustomerId(shoppingCarObj.customerId); // Devolver el nuevo producto agregado
   }
 
   static getActiveShoppingCarByCustomerId(customerId = "") {
-    return db.lstShoppingCar.filter(
+    const lstCars = db.lstShoppingCar.filter(
       (e) => e.customerId === customerId && e.status === shoppingStatus.Active
     );
+
+    if (lstCars.length === 0) {
+      return lstCars;
+    } else {
+      const car = {};
+
+      lstCars.map((e) => {
+        car.shoppingCarId = e.shoppingCarId;
+        car.customerId = e.customerId;
+        car.quantity = e.quantity;
+        car.productId = e.productId;
+        car.datePurchase = e.datePurchase;
+        car.status = e.status;
+        car.subTotal = e.subTotal;
+      });
+      return car;
+    }
+  }
+
+  static getAllShoppingCar() {
+    return db.lstShoppingCar;
+  }
+
+  get CurrentDate() {
+    const fechaActual = new Date();
+    //toLocaleString() con la zona horaria deseada, se obtiene la hora y la fecha actuales en la zona horaria específica
+    const horaLocal = fechaActual.toLocaleString("es-DO", {
+      timeZone: "America/Santo_Domingo",
+    });
+    return horaLocal;
   }
 }

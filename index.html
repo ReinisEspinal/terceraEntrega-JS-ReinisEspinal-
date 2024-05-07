@@ -22,10 +22,7 @@
               id="categorySelect"
               class="nav-container-filter-left select"
               title="Buscar en"
-            >
-              <!-- <option id="optionDeault" class="optionSelect" selected="selected" value="patines">Patines</option>
-             -->
-            </select>
+            ></select>
 
             <input
               id="navSearchFilter"
@@ -35,18 +32,18 @@
             />
             <!--SEARCH-->
 
-            <div class="shoppingCarAmount">
-              <img
+            <img
               id="searchCategoryBtn"
-                class="searchBtnImg"
-                src="./assets/searchLupaImg.png"
-                alt="lupa"
-              />
-            </div>
+              class="searchBtnImg"
+              src="./assets/searchLupaImg.png"
+              alt="lupa"
+            />
           </article>
           <!--END FILTER-->
 
-          <img class="carImg" src="./assets/carImg.png" alt="car" />
+          <div class="shoppingCarAmount">
+            <img class="carImg" src="./assets/carImg.png" alt="car" />
+          </div>
           <!--END CARD COUNT-->
         </article>
       </nav>
@@ -70,7 +67,7 @@
       <!--END FILTER-->
 
       <main class="main">
-        <section class="main-container-filter-left sectionProduct">
+        <!--TODO: <section class="main-container-filter-left sectionProduct">
           <div class="filter-left brand-filter-left">
             <p class="title">Brands</p>
             <select class="main-select-brand">
@@ -81,7 +78,7 @@
             </select>
             <hr />
           </div>
-          <!--END BRANDS FILTER-->
+          END BRANDS FILTER
 
           <div class="filter-left price-filter-left">
             <p>Price</p>
@@ -92,9 +89,9 @@
             </ul>
             <hr />
           </div>
-          <!--END PRICE FILTER-->
+          END PRICE FILTER
         </section>
-        <!--END FILTER LEFT-->
+        END FILTER LEFT-->
 
         <section class="main-container-products sectionProduct">
           <div class="product-container">
@@ -107,7 +104,13 @@
         <!--END PRODUCTS-->
 
         <section class="main-container-shoppingDetails sectionProduct">
-          SHOPPING DETAILS
+          <article class="detailsProducts">
+            <p class="title">
+              Registro de actividades<br />
+              de compra
+            </p>
+            <ul class="productInCarUl"></ul>
+          </article>
         </section>
         <!--END shoppingDetails-->
       </main>

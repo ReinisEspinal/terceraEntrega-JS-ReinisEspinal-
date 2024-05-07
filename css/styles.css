@@ -248,3 +248,119 @@ h4 {
   color: var(--five-color);
   margin: 2px 30px;
 }
+
+/*#region name*/
+/* The Modal (background) */
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  align-self: flex-end;
+  margin-bottom: 10px; /* Add some spacing between the close button and the content */
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  height: max-content;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.shoppingDetails {
+  display: flex;
+}
+
+.productName {
+  width: 100%;
+}
+
+.left-container {
+  width: max-content;
+}
+.right-container {
+  align-content: space-evenly;
+  width: max-content;
+}
+.textDescription {
+  width: 60%;
+}
+
+hr {
+  width: 100%;
+  margin: 20px 0px;
+}
+.shoppingDetails {
+  margin: 20px 0px;
+}
+
+.priceTextModal {
+  padding: 0px 10px;
+  margin: 0px 10px;
+}
+
+.selectQuantity {
+  margin: 0px 10px;
+}
+
+.rounded {
+  border: solid 2px var(--secondary-color);
+  border-radius: 10px;
+}
+.hidden {
+  display: none;
+}
+.addBtn {
+  margin: 0px 10px;
+}
+/*end region */
+
+.productInCarUl {
+  list-style-type: none;
+}
+.detailsProducts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.title{
+  font-weight: 700;
+}
+.subtotal {
+  color: var(--five-color);
+}
+.text-details {
+  padding: 5px;
+}
+
+.text-add {
+  color: #1da510;
+  font-weight: 700;
+}
