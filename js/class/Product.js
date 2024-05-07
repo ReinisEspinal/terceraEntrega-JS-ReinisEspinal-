@@ -6,6 +6,7 @@ const status = new Status();
 const db = new DataBase();
 export default class Product {
   constructor(
+    productId,
     name,
     description,
     warehouse,
@@ -16,6 +17,7 @@ export default class Product {
     status,
     urlImg
   ) {
+    this.productId = productId;
     this._name = name;
     this._description = description;
     this._warehouse = warehouse;
