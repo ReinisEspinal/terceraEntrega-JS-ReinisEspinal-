@@ -1,6 +1,5 @@
 import ShoppingCar from "../class/ShoppingCar.js";
 
-
 const shopCar = new ShoppingCar("40224211418");
 const elContainerCar = document.getElementById("proList");
 const elContainerLabelSubtotal = document.getElementById(
@@ -10,18 +9,27 @@ const quiantityText = document.getElementsByClassName("textCounter")[0];
 const elSubtotal = document.createElement("article");
 elSubtotal.id = "subtotalText";
 elSubtotal.className = "subtotalDetailLeft SubtotalText";
-
+elSubtotal.style.margin = "10px";
 
 function cardDetailsProductComponent() {
   try {
     const amountProductInCar = quiantityText.innerHTML;
     const lstShoppingCar =
       ShoppingCar.getActiveShoppingCarByCustomerId("40224211418");
+    const btnPagar = document.createElement("span");
+    btnPagar.className = "";
+    btnPagar.style.border = "1px solid black";
+    btnPagar.innerHTML = "Proceder al pago";
+    btnPagar.style.backgroundColor = "var(--primary-color)";
+    btnPagar.style.color = "white";
+    btnPagar.style.borderRadius = "25px";
+    btnPagar.style.padding = "5px";
+
     elContainerCar.innerHTML = "";
+    elContainerLabelSubtotal.innerHTML = "";
     lstShoppingCar.map((product) => {
       const elCard = document.createElement("div");
-      const urlImg = `http://127.0.0.1:5500/${product.urlImg}`;
-
+      const urlImg = `./${product.urlImg}`;
       elCard.className = "modal-content-cardDetailsProducts";
       elCard.innerHTML = `
         <article class="imgContainer">
@@ -39,10 +47,10 @@ function cardDetailsProductComponent() {
       `;
 
       elSubtotal.textContent = `SubTotal (${amountProductInCar}) : ${shopCar.SubTotal}`;
-
-      elContainerLabelSubtotal.appendChild(elSubtotal);
       elContainerCar.appendChild(elCard);
     });
+    elContainerLabelSubtotal.insertBefore(elSubtotal, null);
+    elContainerLabelSubtotal.insertBefore(btnPagar, elSubtotal.nextSibling);
   } catch (error) {
     console.error("Error fetching shopping cart:", error);
     // Handle error appropriately, e.g., display error message to user
