@@ -30,16 +30,18 @@ export default class ShoppingCar {
   get SubTotal() {
     return ShoppingCar.productCarShoppingView(this.customerId).reduce(
       (acumulador, product) => {
-        const price = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+        const price = Math.round(product.price.replace(/[^0-9.-]+/g, ""));
         return acumulador + price * product.quantity;
       },
       0
     );
   }
+
   static productCarShoppingView(customerId = "") {
     let newlstProduct = [Product];
     const customerShoppingCar = db.lstShoppingCar.some(
-      (car) => car.customerId === customerId
+      (car) =>
+        (car.customerId === customerId)
     );
 
     if (!customerShoppingCar) {
@@ -60,6 +62,7 @@ export default class ShoppingCar {
               productDescription: lstProduct.description,
               brand: lstProduct.brand,
               quantity: car.quantity,
+              status: car.status,
               price: lstProduct.price,
               urlImg: lstProduct.urlImg,
               subTotal: lstProduct.subTotal,
@@ -104,26 +107,20 @@ export default class ShoppingCar {
   }
 
   static getActiveShoppingCarByCustomerId(customerId = "") {
-    const lstCars = db.lstShoppingCar.filter(
-      (e) => e.customerId === customerId && e.status === shoppingStatus.Active
-    );
+    let lstCars = ShoppingCar.productCarShoppingView(customerId);
+    return lstCars;
+  }
 
-    if (lstCars.length === 0) {
-      return lstCars;
-    } else {
-      const car = {};
-
-      lstCars.map((e) => {
-        car.shoppingCarId = e.shoppingCarId;
-        car.customerId = e.customerId;
-        car.quantity = e.quantity;
-        car.productId = e.productId;
-        car.datePurchase = e.datePurchase;
-        car.status = e.status;
-        car.subTotal = e.subTotal;
-      });
-      return car;
-    }
+  static getQuantityProductsInCar(customerId = "") {
+    const x = db.lstShoppingCar
+      .filter(
+        (car) =>
+          car.customerId === customerId && car.status === shoppingStatus.Active
+      )
+      .reduce((acumulador, product) => {
+        return acumulador + Number(product.quantity);
+      }, 0);
+    return x;
   }
 
   static getAllShoppingCar() {

@@ -6,9 +6,9 @@ export class DataBase {
 
     this.dataBaseShop = [
       (this.lstShoppingCar = [
-    /*    {
-          shoppingCarId: "40224211413-PRD011-04302024",
-          customerId: "40224211413",
+        {
+          shoppingCarId: "40224211418-PRD011-04302024",
+          customerId: "40224211418",
           quantity: 5,
           productId: "PRD011",
           datePurchase: "04302024",
@@ -16,14 +16,14 @@ export class DataBase {
           subTotal: 4040
         },
         {
-          shoppingCarId: "40224211413-PRD012-04302024",
-          customerId: "40224211413",
-          quantity: 5,
+          shoppingCarId: "40224211418-PRD012-04302024",
+          customerId: "40224211418",
+          quantity: 2,
           productId: "PRD012",
           datePurchase: "04302024",
           status: "ACTIVE",
           subTotal: 4040
-        }, */
+        }, 
       ]),
       (this.lstProducts = [
           {
@@ -308,6 +308,7 @@ export class DataBase {
   }
 
   static loadFromLocalStorage() {
+
     const dataBaseShop =
       JSON.parse(localStorage.getItem("dataBaseShop")) || [];
     return {

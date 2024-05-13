@@ -1,68 +1,64 @@
 import createModalComponent from "./createModalComponent.js";
 import imgComponent from "./imgComponents.js";
+import selectPriceProductSort from "../evenHandle/selectPriceProductSort.js";
 
-function cardComponent(containerNode, lstObj = [Object]) {
-  const container = document.getElementById(containerNode); 
+export default function cardComponent(containerNode, lstObj = [Object]) {
+  const container = document.getElementById(containerNode);
 
-  container.innerHTML = "";
+  if (container != null) {
+    container.innerHTML = "";
+    lstObj.forEach((product) => {
+      const productCard = document.createElement("div");
+      productCard.classList.add("card-product", "card");
 
-  lstObj.forEach((product) => {
-    const productCard = document.createElement("div");
-    productCard.classList.add("card-product", "card"); 
+      const headerCard = document.createElement("div");
+      headerCard.classList.add("headerCard");
 
+      const imgHeaderCard = imgComponent(
+        "imgCardHeader",
+        product.urlImg,
+        product.name
+      );
+      const containerImg = document.createElement("div");
+      containerImg.classList.add("containerImg");
 
-    const headerCard = document.createElement("div");
-    headerCard.classList.add("headerCard");
+      containerImg.appendChild(imgHeaderCard);
+      headerCard.appendChild(containerImg);
 
-    const imgHeaderCard = imgComponent(
-      "imgCardHeader",
-      product.urlImg,
-      product.name
-    );
-    const containerImg = document.createElement("div");
-    containerImg.classList.add("containerImg");
+      const bodyCard = document.createElement("div");
+      bodyCard.classList.add("bodyCard");
 
-    containerImg.appendChild(imgHeaderCard);
-    headerCard.appendChild(containerImg);
+      const productName = document.createElement("h4");
+      productName.textContent = product.name;
 
+      const productPrice = document.createElement("p");
+      productPrice.className = "priceText";
+      productPrice.textContent = product.price;
 
-    const bodyCard = document.createElement("div");
-    bodyCard.classList.add("bodyCard");
+      const addProductLink = document.createElement("a");
+      addProductLink.classList.add("addProductoHyperlink");
 
-    const productName = document.createElement("h4");
-    productName.textContent = product.name;
+      let button = document.createElement("input");
 
-    const productPrice = document.createElement("p");
-    productPrice.className = "priceText";
-    productPrice.textContent = product.price;
+      button.setAttribute("id", product.name);
+      button.setAttribute("class", "addBtn");
+      button.setAttribute("type", "button");
+      button.setAttribute("value", "Agregar");
+      button.addEventListener("click", () => {
+        createModalComponent(product);
+      });
 
-    const addProductLink = document.createElement("a");
-    addProductLink.classList.add("addProductoHyperlink");
+      addProductLink.appendChild(button);
 
-    let button = document.createElement("input");
- 
-    button.setAttribute("id", product.name);
-    button.setAttribute("class", "addBtn");
-    button.setAttribute("type", "button");
-    button.setAttribute("value", "Agregar");
-    button.addEventListener("click",()=>{
-      createModalComponent(product);
-    })
+      bodyCard.appendChild(productName);
+      bodyCard.appendChild(productPrice);
+      bodyCard.appendChild(addProductLink);
 
- 
-    addProductLink.appendChild(button);
+      productCard.appendChild(headerCard);
+      productCard.appendChild(bodyCard);
 
-    bodyCard.appendChild(productName);
-    bodyCard.appendChild(productPrice);
-    bodyCard.appendChild(addProductLink);
-
- 
-    productCard.appendChild(headerCard);
-    productCard.appendChild(bodyCard);
-
-   
-    container.appendChild(productCard);
-  });
+      container.appendChild(productCard);
+    });
+    selectPriceProductSort(lstObj);
+  }
 }
-
-export default cardComponent;

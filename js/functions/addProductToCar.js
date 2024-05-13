@@ -1,7 +1,7 @@
 import Product from "../class/Product.js";
 import ShoppingCart from "../class/ShoppingCar.js";
 import ShoppingCarStatus from "../class/ShopingCarStatus.js";
-import cardShoppingDetailsComponent from "../components/cardShoppingDetailsComponent.js";
+import counteProductCarComponent from "../components/counterProductCarComponent.js";
 
 //TODO: SYSTEM LOGIN IN ORDER TO GET THE CUSTOMERID
 const customerTest = { id: "40224211418" };
@@ -21,8 +21,11 @@ function addProductToCar(modalTag, product = Product) {
       subTotal: price * quantityAvailable,
     };
 
-    ShoppingCart.addNewProductToCar(shoppingObj);
-    cardShoppingDetailsComponent();
+ShoppingCart.addNewProductToCar(shoppingObj);
+
+      counteProductCarComponent(
+        ShoppingCart.getQuantityProductsInCar("40224211418")
+      );
   });
 
   close(modalTag);
