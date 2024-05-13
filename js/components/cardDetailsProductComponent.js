@@ -19,11 +19,12 @@ function cardDetailsProductComponent() {
     const btnPagar = document.createElement("span");
     btnPagar.className = "";
     btnPagar.style.border = "1px solid black";
-    btnPagar.innerHTML = "Proceder al pago";
+    btnPagar.innerHTML = "Pagar";
     btnPagar.style.backgroundColor = "var(--primary-color)";
     btnPagar.style.color = "white";
     btnPagar.style.borderRadius = "25px";
     btnPagar.style.padding = "5px";
+    btnPagar.style.width ="max-content";
 
     elContainerCar.innerHTML = "";
     elContainerLabelSubtotal.innerHTML = "";
