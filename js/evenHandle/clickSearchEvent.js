@@ -1,15 +1,16 @@
 import Product from "../class/Product.js";
 import cardComponent from "../components/cardComponent.js";
 import counterLabelComponent from "../components/counterLabelComponent.js";
+let lstProductCategory = [Product];
 
 export default function clickSearchEvent() {
+
   const selectTag = document.getElementById("categorySelect");
   const inputSearchTag = document.getElementById("navSearchFilter");
   const imgSearchBtnTag = document.getElementById("searchCategoryBtn");
-
-  imgSearchBtnTag.addEventListener("click", () => {
+  imgSearchBtnTag.addEventListener("click", (evenHandle) => {
     if (selectTag.value !== "all") {
-      const lstProductCategory = Product.filterByProductsCategory(
+      lstProductCategory = Product.filterByProductsCategory(
         selectTag.value
       ).filter((p) => {
         return p.name.toLowerCase().match(inputSearchTag.value.toLowerCase());
@@ -21,12 +22,12 @@ export default function clickSearchEvent() {
       cardComponent("productContainer", lstProductCategory);
     } else {
       //TODO CAMBIAR NOMBRE DEL METODO PARA HACER REFERENCIA A QUE RETORNA UNA LISTA DE PRODUCTOS Y NO UN SOLO PRODUCTO
-      const lstProduct = Product.getProductByName(inputSearchTag.value);
+      lstProductCategory = Product.getProductByName(inputSearchTag.value);
       cardComponent(
         "productContainer",
         Product.getProductByName(inputSearchTag.value)
       );
-      counterLabelComponent(lstProduct, selectTag.value);
     }
   });
+
 }

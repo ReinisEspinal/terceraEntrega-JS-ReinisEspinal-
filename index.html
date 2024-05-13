@@ -40,9 +40,12 @@
             />
           </article>
           <!--END FILTER-->
-
+          <a id="productsNav" class="productsNav"><p>Products</p></a>
           <div class="shoppingCarAmount">
-            <img class="carImg" src="./assets/carImg.png" alt="car" />
+            <span class="counter">
+              <img class="carImg" src="./assets/carImgEmpty.svg" alt="car" />
+              <p class="textCounter"></p>
+            </span>
           </div>
           <!--END CARD COUNT-->
         </article>
@@ -54,12 +57,13 @@
           <!--RENDER COUNTER LABEL JS-->
         </p>
         <article class="nav-sortFilter-container">
-          <select class="nav-sortFilter-container-right" title="Buscar en">
-            <option selected="selected" hidden disabled>
-              Sort by: Feature
+          <select class="nav-sortFilter-container-right">
+            <option selected="selected" hidden disabled>Sort by: Price</option>
+            <option id="DeMayorMenor" class="optionHightPrice" value="0">
+              <p>Precio: del mas alto al mas bajo.</p>
             </option>
-            <option value="DeMayorMenor">
-              Precio: del mas alto al mas bajo
+            <option id="DeMenorMayor" class="optionLowPrice" value="1">
+              <p>Precio: del mas bajo al mas alto.</p>
             </option>
           </select>
         </article>
@@ -67,33 +71,29 @@
       <!--END FILTER-->
 
       <main class="main">
-        <!--TODO: <section class="main-container-filter-left sectionProduct">
-          <div class="filter-left brand-filter-left">
-            <p class="title">Brands</p>
-            <select class="main-select-brand">
-              <option selected="selected" hidden disabled>
-                Filter by: Brands
-              </option>
-              <option value="nike">Nike</option>
-            </select>
-            <hr />
+        <section
+          id="main-container-cardDetails"
+          class="main-container-cardDetailsProducts"
+        >
+          <div id="proList" class="proList">
+            <h2 id="carTitle" class="title">Carrito</h2>
+            <p id="carEmptyText">Anular la selección de todos los elementos</p>
+            <!--DINAMIC CARD-->
           </div>
-          END BRANDS FILTER
-
-          <div class="filter-left price-filter-left">
-            <p>Price</p>
-            <ul class="main-container-filter-ul ul">
-              <li class="filter-ul-li li">Menos de $25</li>
-              <li class="filter-ul-li li">De $50 a $100</li>
-              <li class="filter-ul-li li">De $25 a $50</li>
-            </ul>
-            <hr />
-          </div>
-          END PRICE FILTER
+          <aside
+            id="totalPriceDetails-container"
+            class="totalPriceDetails-container"
+          >
+            <!--RENDER-->
+            <input type="button" class="" value="Proceder al pago" />
+          </aside>
         </section>
-        END FILTER LEFT-->
+        <!--EN CAR PRODUCT-->
 
-        <section class="main-container-products sectionProduct">
+        <section
+          id="main-container-products"
+          class="main-container-products sectionProduct"
+        >
           <div class="product-container">
             <h1>Products Shop</h1>
             <div id="productContainer" class="section-product-car">
@@ -102,19 +102,12 @@
           </div>
         </section>
         <!--END PRODUCTS-->
-
-        <section class="main-container-shoppingDetails sectionProduct">
-          <article class="detailsProducts">
-            <p class="title">
-              Registro de actividades<br />
-              de compra
-            </p>
-            <ul class="productInCarUl"></ul>
-          </article>
-        </section>
-        <!--END shoppingDetails-->
       </main>
       <!--END MAIN-->
+
+      <footer class="footer">
+        <p class="title">FOOTER</p>
+      </footer>
     </section>
 
     <script type="module" src="./js/main.js"></script>

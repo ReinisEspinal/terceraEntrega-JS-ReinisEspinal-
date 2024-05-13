@@ -1,7 +1,6 @@
 import Status from "./Status.js";
 import { DataBase } from "../db/DataBase.js";
 import counterElementList from "../functions/counterElementList.js";
-
 const status = new Status();
 const db = new DataBase();
 export default class Product {
@@ -73,26 +72,25 @@ export default class Product {
     });
   }
 
-  static sortByProductPriceASC() {
-    let newProductList = [...db.lstProducts];
-    newProductList.sort((a, b) => {
+  static sortByProductPriceASC(lstProducts) {
+    lstProducts.sort((a, b) => {
+
       const priceA = parseFloat(a.price.replace(/[^0-9.-]+/g, "")); // Convertir precio de cadena a número
       const priceB = parseFloat(b.price.replace(/[^0-9.-]+/g, "")); // Convertir precio de cadena a número
 
       return priceA - priceB;
     });
-    return newProductList;
+    return lstProducts;
   }
 
-  static sortByProductPriceDSC() {
-    let newProductList = [...db.lstProducts];
-    newProductList.sort((a, b) => {
+  static sortByProductPriceDSC(lstProducts) {
+    lstProducts.sort((a, b) => {
       const priceA = parseFloat(a.price.replace(/[^0-9.-]+/g, ""));
       const priceB = parseFloat(b.price.replace(/[^0-9.-]+/g, ""));
 
       return priceB - priceA;
     });
-    return newProductList;
+    return lstProducts;
   }
 
   static getAvailableProduct() {
@@ -139,6 +137,6 @@ export default class Product {
     return counterElementList(lstProduct);
   }
   static getAllProducts() {
-    return db.lstProducts;
+  return db.lstProducts;
   }
 }

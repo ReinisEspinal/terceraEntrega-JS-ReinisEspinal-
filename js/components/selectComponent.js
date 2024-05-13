@@ -6,6 +6,7 @@ function selectComponent(selectElementId, options) {
 
   // Add a default option
   const defaultOption = document.createElement("option");
+  defaultOption.id ="defaultSelectOptionId"
   defaultOption.value = "all";
   defaultOption.text = "All";
 
