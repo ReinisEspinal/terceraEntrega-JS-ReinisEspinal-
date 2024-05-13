@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="css/styles.css" />
+    <link rel="shortcut icon" href="./assets/logoImgIco.ico" />
+    <title>HappyShopping</title>
+  </head>
+  <body>
+    <section class="wrapper">
+      <nav class="nav">
+        <article class="nav-container">
+          <article class="nav-container-imagotipo">
+            <img src="./assets/logoImg.png" alt="logo" />
+            <span class="typography">HappyShopping</span>
+          </article>
+          <!--END LOGO-->
+
+          <article class="nav-container-filter">
+            <select
+              id="categorySelect"
+              class="nav-container-filter-left select"
+              title="Buscar en"
+            ></select>
+
+            <input
+              id="navSearchFilter"
+              type="search"
+              class="nav-container-filter-search"
+              placeholder="Search..."
+            />
+            <!--SEARCH-->
+
+            <img
+              id="searchCategoryBtn"
+              class="searchBtnImg"
+              src="./assets/searchLupaImg.png"
+              alt="lupa"
+            />
+          </article>
+          <!--END FILTER-->
+          <a id="productsNav" class="productsNav"><p>Products</p></a>
+          <div class="shoppingCarAmount">
+            <span class="counter">
+              <img class="carImg" src="./assets/carImgEmpty.svg" alt="car" />
+              <p class="textCounter"></p>
+            </span>
+          </div>
+          <!--END CARD COUNT-->
+        </article>
+      </nav>
+      <!--END NAV-->
+
+      <section class="sortFilter">
+        <p id="pCounterContainer" class="textFilter">
+          <!--RENDER COUNTER LABEL JS-->
+        </p>
+        <article class="nav-sortFilter-container">
+          <select class="nav-sortFilter-container-right">
+            <option selected="selected" hidden disabled>Sort by: Price</option>
+            <option id="DeMayorMenor" class="optionHightPrice" value="0">
+              <p>Precio: del mas alto al mas bajo.</p>
+            </option>
+            <option id="DeMenorMayor" class="optionLowPrice" value="1">
+              <p>Precio: del mas bajo al mas alto.</p>
+            </option>
+          </select>
+        </article>
+      </section>
+      <!--END FILTER-->
+
+      <main class="main">
+        <section
+          id="main-container-cardDetails"
+          class="main-container-cardDetailsProducts"
+        >
+          <div id="proList" class="proList">
+            <h2 id="carTitle" class="title">Carrito</h2>
+            <p id="carEmptyText">Anular la selección de todos los elementos</p>
+            <!--DINAMIC CARD-->
+          </div>
+          <aside
+            id="totalPriceDetails-container"
+            class="totalPriceDetails-container"
+          >
+            <!--RENDER-->
+            <input type="button" class="" value="Proceder al pago" />
+          </aside>
+        </section>
+        <!--EN CAR PRODUCT-->
+
+        <section
+          id="main-container-products"
+          class="main-container-products sectionProduct"
+        >
+          <div class="product-container">
+            <h1>Products Shop</h1>
+            <div id="productContainer" class="section-product-car">
+              <!--JS PRODUCTS CARD-->
+            </div>
+          </div>
+        </section>
+        <!--END PRODUCTS-->
+      </main>
+      <!--END MAIN-->
+
+      <footer class="footer">
+        <p class="title">FOOTER</p>
+      </footer>
+    </section>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
