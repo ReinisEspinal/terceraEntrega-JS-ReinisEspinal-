@@ -17,7 +17,7 @@ function cardDetailsProductComponent() {
     const lstShoppingCar =
       ShoppingCar.getActiveShoppingCarByCustomerId("40224211418");
     const btnPagar = document.createElement("span");
-    btnPagar.className = "";
+  btnPagar.className = "";
     btnPagar.style.border = "1px solid black";
     btnPagar.innerHTML = "Pagar";
     btnPagar.style.backgroundColor = "var(--primary-color)";
