@@ -3,6 +3,7 @@ import { DataBase } from "../db/DataBase.js";
 import counterElementList from "../functions/counterElementList.js";
 const status = new Status();
 const db = new DataBase();
+
 export default class Product {
   constructor(
     productId,
@@ -28,6 +29,46 @@ export default class Product {
     this._urlImg = urlImg;
   }
 
+  static async addNewProduct(apiUrl) {
+    try {
+      let newProducto;
+      let counter = 19;
+      axios
+        .get(apiUrl)
+        .then(function (response) {
+          // handle success
+          response.data.forEach((product) => {
+            newProducto = {
+              productId: "PROD" + counter++,
+              name: product.title,
+              description: product.description,
+              warehouse: "WAREHOUSE",
+              brand: "BRAND",
+              category: product.category,
+              price: product.price,
+              quantity: 40,
+              status: "AVAILABLE",
+              urlImg: product.image,
+            };
+
+            console.log(newProducto);
+            db.lstProducts.push(newProducto);
+          });
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
+          console.log(db.lstProducts);
+        });
+      db.saveToLocalStorage();
+    } catch (error) {
+      console.error("Error adding new product:", error);
+    }
+  }
+
   static getUniqueCategoryCollection() {
     const lstProductsCategory = db.lstProducts.map(
       (productObj) => productObj.category
@@ -39,7 +80,6 @@ export default class Product {
 
   static getUniqueCategoriesInclude() {
     const categories = [];
-
     db.lstProducts.forEach((productObj) => {
       const existingCaterogy = categories.includes(productObj.category);
       existingCaterogy ? null : categories.push(productObj.category);
@@ -74,7 +114,6 @@ export default class Product {
 
   static sortByProductPriceASC(lstProducts) {
     lstProducts.sort((a, b) => {
-
       const priceA = parseFloat(a.price.replace(/[^0-9.-]+/g, "")); // Convertir precio de cadena a número
       const priceB = parseFloat(b.price.replace(/[^0-9.-]+/g, "")); // Convertir precio de cadena a número
 
@@ -137,6 +176,6 @@ export default class Product {
     return counterElementList(lstProduct);
   }
   static getAllProducts() {
-  return db.lstProducts;
+    return db.lstProducts;
   }
 }

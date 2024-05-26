@@ -5,8 +5,12 @@ import clickSearchEvent from "../evenHandle/clickSearchEvent.js";
 import ShoppingCart from "../class/ShoppingCar.js";
 import clickAddProductBtn from "../evenHandle/clickAddProductBtn.js";
 import clickProducts from "../evenHandle/clickProducts.js";
-import cardDetailsProductComponent from "../components/cardDetailsProductComponent.js"
 import counteProductCarComponent from "../components/counterProductCarComponent.js";
+const piUrl = "https://fakestoreapi.com/products/"; // Example API to get one product
+
+Product.addNewProduct(piUrl);
+
+
 const productList = Product.getAllProducts();
 const uniqueCategories = Product.getUniqueCategoriesInclude();
 

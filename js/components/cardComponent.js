@@ -7,7 +7,9 @@ export default function cardComponent(containerNode, lstObj = [Object]) {
 
   if (container != null) {
     container.innerHTML = "";
+   
     lstObj.forEach((product) => {
+    
       const productCard = document.createElement("div");
       productCard.classList.add("card-product", "card");
 

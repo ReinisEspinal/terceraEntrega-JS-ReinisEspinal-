@@ -13,7 +13,9 @@
         <article class="nav-container">
           <article class="nav-container-imagotipo">
             <img src="./assets/logoImg.png" alt="logo" />
-            <span class="typography">HappyShopping</span>
+            <a href="/index.html"
+              ><span class="typography">HappyShopping</span>
+            </a>
           </article>
           <!--END LOGO-->
 
@@ -40,7 +42,12 @@
             />
           </article>
           <!--END FILTER-->
-          <a id="productsNav" class="productsNav"><p>Products</p></a>
+          <a id="productsNav" src="./index.html" class="productsNav">
+            <p>Products</p>
+          </a>
+          <a id="testNav" href="./pages/GoogleSheetApi.html" class="productsNav">
+            <p>Test Google API</p>
+          </a>
           <div class="shoppingCarAmount">
             <span class="counter">
               <img class="carImg" src="./assets/carImgEmpty.svg" alt="car" />
@@ -108,7 +115,7 @@
         <p class="title">FOOTER</p>
       </footer>
     </section>
-
     <script type="module" src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
